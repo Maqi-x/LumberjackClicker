@@ -83,3 +83,4 @@ build/
 .dart_tool/
 .vscode/
 android/.gradle/
+*.lock
