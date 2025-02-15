@@ -158,12 +158,12 @@ class SettingsScreen extends StatelessWidget {
 # **Info**
 **Lumberjack clicker** to prosta gra typu clicker, polegająca na zcinaniu drewna, sprzedaży i kupowaniu ulepszeń.\n
 Aktualnie w fazie **Beta**\n
-Projekt *jest open source!*, jeśli chcesz przejżeć kod źródłowy sprawdź naszego [githuba](https://github.com/Maqi-x/LumberjackClicker)
+Projekt *jest open source!*, jeśli chcesz przejżeć kod źródłowy sprawdź naszego [githuba](github.com/Maqi-x/LumberjackClicker)
             """
                 : """# **Info**.
 **Lumberjack clicker** is a simple clicker game of cutting wood, selling and buying upgrades.\n
 Currently in **Beta** phase\n
-Project *is open source!* if you want to browse the source code check out our [github](github.com)\n""",
+Project *is open source!* if you want to browse the source code check out our [github](github.com/Maqi-x/LumberjackClicker)\n""",
           )
         ],
       ),
