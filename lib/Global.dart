@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lumberjack_clicker/utils.dart';
+import 'package:lumberjack_clicker/Utils/all.dart';
+import 'Themes/all.dart';
+
 export 'package:provider/provider.dart';
 
 class GlobalState extends ChangeNotifier {
@@ -8,6 +10,7 @@ class GlobalState extends ChangeNotifier {
   int _vibrationsPower = 2;
   int _lang = 1; // 1 = English, 0 = Polish
   int _defaultScreen = 1; // 0 = shop, 1 = clicker, 2 = settings
+  int _theme = 0; // 0 = default, 1 = cyber, 2 = flutter
 
   int get axePower => _axePower;
   int get autoCollect => _autoCollect;
@@ -20,6 +23,13 @@ class GlobalState extends ChangeNotifier {
   int get vibrationsPower => _vibrationsPower;
   int get lang => _lang;
   int get defaultScreen => _defaultScreen;
+  int get theme => _theme;
+
+  set theme(int value) {
+    _theme = value;
+    save('Settings/theme', value);
+    notifyListeners();
+  }
 
   set darktheme(bool value) {
     _darktheme = value;
@@ -113,10 +123,20 @@ class GlobalState extends ChangeNotifier {
     lang = await get<int>('Settings/lang', 1);
     defaultScreen = await get<int>('Settings/defaultScreen', 1);
     darktheme = await get<bool>('Settings/darktheme', true);
+    theme = await get<int>('Settings/theme', 0);
   }
 
-  String Lang(String t1, String t2) {
-    return lang == 0 ? t1 : t2;
+  String Lang(String pl, String en) {
+    return lang == 0 ? pl : en;
+  }
+
+  ThemeData getTheme() {
+    switch (theme) {
+      case 1:
+        return darktheme ? FlutterDarkTheme : FlutterlLightTheme;
+      default:
+        return darktheme ? ClassicDarkTheme : ClassicLightTheme;
+    }
   }
 
   Widget buildStat(String label, int value, IconData icon) {

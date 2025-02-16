@@ -1,8 +1,9 @@
-import 'dart:math';
+import '../Global.dart';
+import '../Utils/all.dart';
+import '../Widgets/StatsPanel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../GLOBAL.dart';
-import '../utils.dart';
+import 'dart:math';
 
 class ClickerScreen extends StatefulWidget {
   const ClickerScreen({super.key});

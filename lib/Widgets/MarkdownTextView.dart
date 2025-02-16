@@ -1,8 +1,8 @@
+import '../Global.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:developer';
-import '../GLOBAL.dart';
 
 class MarkdownTextView extends StatelessWidget {
   final String text;

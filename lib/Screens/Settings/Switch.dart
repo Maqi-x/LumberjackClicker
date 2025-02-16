@@ -1,6 +1,6 @@
+import '../../Global.dart';
 import 'package:flutter/material.dart';
-import 'package:lumberjack_clicker/utils.dart';
-import '../../GLOBAL.dart';
+import 'package:lumberjack_clicker/Utils/all.dart';
 import 'package:provider/provider.dart';
 
 class SettingsSwitch extends StatelessWidget {

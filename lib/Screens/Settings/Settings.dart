@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lumberjack_clicker/utils.dart';
-import '../../GLOBAL.dart';
+import 'package:lumberjack_clicker/Utils/all.dart';
+import '../../Global.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 // import 'dart:io';
@@ -10,6 +10,7 @@ import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'Switch.dart';
 import 'Buttons.dart';
 import 'OptionsSelector.dart';
+import 'Category.dart';
 
 import '../../Widgets/MarkdownTextView.dart';
 
@@ -101,6 +102,14 @@ class SettingsScreen extends StatelessWidget {
                   showRestartDialog(context, action: () => global.darktheme = value);
                 },
               ),
+              SettingsOptionSelector(
+                title: global.Lang("Motyw", "Theme"),
+                options: [global.Lang("Domyślny", "Default"), "Flutter"],
+                getValue: (context) => global.theme,
+                setValue: (context, value) {
+                  showRestartDialog(context, action: () => global.theme = value);
+                },
+              ),
               SettingsSwitch(
                 title: global.lang == 0 ? "Animacje" : "Animations",
                 description: global.Lang("Lepsze efekty graficzne dzięki animacjom", "Better graphic effects with animations"),
@@ -145,6 +154,7 @@ class SettingsScreen extends StatelessWidget {
                   delAll();
                   final global = Provider.of<GlobalState>(context, listen: false);
                   global.refresh();
+                  Phoenix.rebirth(context);
                 },
                 desc: global.lang == 0
                     ? "\nUwaga! to nieodwracalnie wyczyści wszytskie ustawienia oraz postęp gry! tego NIE DA SIĘ PRZYWRÓCIĆ!\nZastosowanie zmian może wymagać ponownego uruchomienia gry"
@@ -166,67 +176,6 @@ Currently in **Beta** phase\n
 Project *is open source!* if you want to browse the source code check out our [github](github.com/Maqi-x/LumberjackClicker)\n""",
           )
         ],
-      ),
-    );
-  }
-}
-
-class SettingsCategory extends StatefulWidget {
-  final String title;
-  final List<Widget> items;
-
-  const SettingsCategory({
-    required this.title,
-    required this.items,
-    super.key,
-  });
-
-  @override
-  SettingsCategoryState createState() => SettingsCategoryState();
-}
-
-class SettingsCategoryState extends State<SettingsCategory> {
-  bool isExpanded = true;
-
-  @override
-  Widget build(BuildContext context) {
-    final global = context.read<GlobalState>();
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      elevation: 3,
-      child: Theme(
-        data: Theme.of(context).copyWith(
-          dividerColor: Colors.transparent,
-          expansionTileTheme: ExpansionTileThemeData(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-            iconColor: Colors.white60,
-            collapsedIconColor: Colors.white38,
-            textColor: Colors.white,
-            collapsedTextColor: Colors.white70,
-            backgroundColor: global.darktheme ? Color.fromARGB(185, 31, 31, 31) : const Color.fromARGB(255, 226, 233, 238),
-          ),
-        ),
-        child: ExpansionTile(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          title: Text(
-            widget.title,
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          initiallyExpanded: isExpanded,
-          onExpansionChanged: (expanded) {
-            global.autoVibration(-1);
-            setState(() {
-              isExpanded = expanded;
-            });
-          },
-          children: widget.items,
-        ),
       ),
     );
   }

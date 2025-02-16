@@ -1,5 +1,5 @@
+import '../../Global.dart';
 import 'package:flutter/material.dart';
-import '../../GLOBAL.dart';
 import 'package:provider/provider.dart';
 
 class SettingsButton extends StatelessWidget {
